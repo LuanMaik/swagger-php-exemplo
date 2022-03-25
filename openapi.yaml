@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: 'My First API'
+  version: '0.1'
+servers:
+  -
+    url: 'http://127.0.0.1:8080'
+paths:
+  /products:
+    get:
+      tags:
+        - Produtos
+      summary: 'Products list'
+      description: 'Products list'
+      operationId: 1dfb9bd9cfb89efcaf9ed99d518135bd
+      responses:
+        '200':
+          description: 'Products list'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  '/product/{id}':
+    get:
+      tags:
+        - Produtos
+      summary: 'Return product by ID'
+      description: 'Return product by ID'
+      operationId: ed53ed741d5626402775b293b4648153
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Produto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+components:
+  schemas:
+    Product:
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Notebook
+        price:
+          type: number
+          format: float
+          example: 1500.99
+      type: object
