@@ -16,7 +16,11 @@ class ProductController
     ];
 
     #[OA\Get(path: '/products', description: 'Products list', summary: 'Products list', tags: ['Products'])]
-    #[OA\Response(response: '200', description: 'Products list', content: new OA\MediaType("application/json", schema: new OA\Schema(type: 'array', items: new OA\Items(type: Product::class))))]
+    #[OA\Response(
+        response: '200',
+        description: 'Products list',
+        content: new OA\MediaType("application/json", schema: new OA\Schema(type: 'array', items: new OA\Items(type: Product::class)))
+    )]
     public function list(ServerRequestInterface $request): ResponseInterface
     {
         return new JsonResponse(self::products);
@@ -24,7 +28,11 @@ class ProductController
 
     #[OA\Get(path: '/product/{id}', description: 'Return product by ID', summary: 'Return product by ID', tags: ['Products'])]
     #[OA\Parameter(name: "id", in: "path", required: true)]
-    #[OA\Response(response: '200', description: 'Product', content: new OA\MediaType("application/json", schema: new OA\Schema(type: Product::class)))]
+    #[OA\Response(
+        response: '200',
+        description: 'Product',
+        content: new OA\MediaType("application/json", schema: new OA\Schema(type: Product::class))
+    )]
     public function findById(ServerRequestInterface $request): ResponseInterface
     {
         return new JsonResponse(self::products[0]);
